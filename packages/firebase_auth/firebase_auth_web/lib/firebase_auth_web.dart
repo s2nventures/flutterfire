@@ -173,10 +173,8 @@ class FirebaseAuthWeb extends FirebaseAuthPlatform {
 
   @override
   Future<bool> isSignInWithEmailLink(String app, String link) {
-    // TODO(hterkelsen): Implement this once
-    // https://github.com/FirebaseExtended/firebase-dart/issues/273
-    // is resolved.
-    throw UnimplementedError('isSignInWithEmailLink');
+    final firebase.Auth auth = _getAuth(app);
+    return Future.value(auth.isSignInWithEmailLink(link));
   }
 
   @override
@@ -280,9 +278,10 @@ class FirebaseAuthWeb extends FirebaseAuthPlatform {
   @override
   Future<PlatformAuthResult> signInWithEmailAndLink(
       String app, String email, String link) async {
-    // TODO(hterkelsen): Use signInWithEmailLink once 7.0.0 of package:firebase
-    // is released.
-    throw UnimplementedError('signInWithEmailAndLink');
+    final firebase.Auth auth = _getAuth(app);
+    final firebase.UserCredential userCredential =
+        await auth.signInWithEmailLink(email, link);
+    return _fromJsUserCredential(userCredential);
   }
 
   @override
