@@ -360,4 +360,14 @@ class FirebaseAuthWeb extends FirebaseAuthPlatform {
     final firebase.Auth auth = _getAuth(app);
     return auth.applyActionCode(code);
   }
+
+  Future<String> verifyPasswordResetCode(String app, String code) {
+    final firebase.Auth auth = _getAuth(app);
+    return auth.verifyPasswordResetCode(code);
+  }
+
+  Future<dynamic> confirmPasswordReset(String app, String code, String newPassword) {
+    final firebase.Auth auth = _getAuth(app);
+    return auth.confirmPasswordReset(code, newPassword);
+  }
 }
