@@ -4,8 +4,8 @@
 
 import 'dart:async';
 
-import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
 import 'package:firebase/firebase.dart' as firebase;
+import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
 import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:http_parser/http_parser.dart';
@@ -349,5 +349,15 @@ class FirebaseAuthWeb extends FirebaseAuthPlatform {
     // a DOM element to contain the reCaptcha.
     // See https://github.com/flutter/flutter/issues/46021
     throw UnimplementedError('verifyPhoneNumber');
+  }
+
+  Future<firebase.ActionCodeInfo> checkActionCode(String app, String code) {
+    final firebase.Auth auth = _getAuth(app);
+    return auth.checkActionCode(code);
+  }
+
+  Future<dynamic> applyActionCode(String app, String code) {
+    final firebase.Auth auth = _getAuth(app);
+    return auth.applyActionCode(code);
   }
 }
