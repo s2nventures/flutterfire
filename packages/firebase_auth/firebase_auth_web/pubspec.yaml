@@ -30,6 +30,11 @@ dev_dependencies:
   firebase_core_web:
     path: ../../firebase_core/firebase_core_web
 
+# fixme: remove this after https://github.com/FirebaseExtended/flutterfire/pull/1780 gets merged
+dependency_overrides:
+  firebase_auth_platform_interface:
+    path: ../firebase_auth_platform_interface
+
 environment:
   sdk: ">=2.0.0-dev.28.0 <3.0.0"
   flutter: ">=1.12.13+hotfix.4 <2.0.0"
