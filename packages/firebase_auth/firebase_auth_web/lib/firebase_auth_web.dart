@@ -374,11 +374,8 @@ class FirebaseAuthWeb extends FirebaseAuthPlatform {
   }
 
   Future<void> confirmPasswordReset(
-    String app,
-    String code,
-    String newPassword,
-  ) {
+      String app, String oobCode, String newPassword) async {
     final firebase.Auth auth = _getAuth(app);
-    return auth.confirmPasswordReset(code, newPassword);
+    await auth.confirmPasswordReset(oobCode, newPassword);
   }
 }
